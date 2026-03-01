@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import LogoHeader from './components/LogoHeader.vue'
-import { onMounted, ref, shallowRef, useTemplateRef } from 'vue'
+import { onMounted, onUnmounted, ref, shallowRef, useTemplateRef } from 'vue'
 import { Canvas, FabricImage, Point } from 'fabric'
 
 const canvasRef = useTemplateRef('canvasRef')
@@ -18,6 +18,10 @@ function handleImageUpload(event: Event) {
 
   const reader = new FileReader()
 
+  reader.onerror = () => {
+    console.error('Erro ao ler o arquivo')
+  }
+
   reader.onload = async (event) => {
     const imageResult = event.target?.result
     if (typeof imageResult !== 'string' || !canvas.value) return
@@ -29,7 +33,7 @@ function handleImageUpload(event: Event) {
       FabricImage.fromURL('/overlay.png')
     ])
 
-    const CANVAS_WIDTH = 640
+    const CANVAS_WIDTH = Math.min(userImg.width, window.innerWidth * 0.8, 640)
     const CANVAS_HEIGHT = userImg.height * (CANVAS_WIDTH / userImg.width)
 
     canvas.value.setDimensions({ width: CANVAS_WIDTH, height: CANVAS_HEIGHT })
@@ -51,11 +55,13 @@ function handleImageUpload(event: Event) {
     overlayImg.positionByLeftTop(new Point(0, 0))
 
     canvas.value.add(userImg, overlayImg)
+    canvas.value.renderAll()
 
     hasImage.value = true
   }
 
   reader.readAsDataURL(file)
+  target.value = ''
 }
 
 function downloadImage() {
@@ -63,7 +69,7 @@ function downloadImage() {
 
   const link = document.createElement('a')
   link.href = dataURL
-  link.download = 'image.png'
+  link.download = 'musica-para-sair-na-mao.png'
 
   link.click()
 }
@@ -73,6 +79,10 @@ onMounted(() => {
     selection: false,
     renderOnAddRemove: true
   })
+})
+
+onUnmounted(() => {
+  canvas.value?.dispose()
 })
 </script>
 
