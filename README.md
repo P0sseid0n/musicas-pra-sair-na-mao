@@ -1,6 +1,6 @@
-# Músicas Para Sair Na Mão 🥊🔥
+# Músicas pra Sair na Mão 🥊🔥
 
-Gerador de imagens com o overlay do álbum **"Músicas Para Sair Na Mão"**. Escolha uma foto, aplique o overlay e baixe a imagem pronta para postar!
+Gerador de imagens com o overlay do álbum **"Músicas pra Sair na Mão"**. Escolha uma foto, aplique o overlay e baixe a imagem pronta para postar!
 
 ![Screenshot](screenshot.jpeg)
 
@@ -51,4 +51,4 @@ bun run lint
 
 ---
 
-**Sério, vai ouvir o álbum:** [Músicas Para Sair Na Mão no Spotify](https://open.spotify.com/album/6g2cGMBQOKa6F8WTeMKBby?si=6zB1J5W6ReKYgduIt4-GqQ) 🎧
+**Sério, vai ouvir o álbum:** [Músicas pra Sair na Mão](https://open.spotify.com/album/6g2cGMBQOKa6F8WTeMKBby?si=6zB1J5W6ReKYgduIt4-GqQ) 🎧
